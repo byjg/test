@@ -1,4 +1,4 @@
-FROM byjg/static-httpserver:latest
+FROM byjg/php:7.3-cli
 
 
 
