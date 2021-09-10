@@ -1,4 +1,4 @@
-name: Docker
+name: Docker Manual
 
 # This workflow uses actions that are not certified by GitHub.
 # They are provided by a third-party and are governed by
@@ -12,12 +12,12 @@ name: Docker
 on:
 #   schedule:
 #     - cron: '44 6 * * *'
-  push:
-    branches: [ master ]
-    # Publish semver tags as releases.
-    tags: [ 'v*.*.*' ]
-  pull_request:
-    branches: [ master ]
+  workflow_dispatch:
+    inputs:
+      push:
+        description: 'Push Image'
+        required: true
+        default: 'true'
 
 
 env:
@@ -48,7 +48,7 @@ jobs:
       # Login against a Docker registry except on PR
       # https://github.com/docker/login-action
       - name: Log into registry
-        if: github.event_name != 'pull_request'
+        if: github.event.inputs.push == 'true'
         uses: docker/login-action@v1
         with:
           registry: ${{ env.REGISTRY }}
@@ -71,6 +71,6 @@ jobs:
           context: .
           file: Dockerfile
           platforms: linux/amd64,linux/arm64
-          push: ${{ github.event_name != 'pull_request' }}
+          push: ${{ github.event.inputs.push == 'true' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
