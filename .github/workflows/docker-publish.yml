@@ -18,6 +18,14 @@ on:
     tags: [ 'v*.*.*' ]
   pull_request:
     branches: [ master ]
+  
+  workflow_dispatch:
+    inputs:
+      push:
+        description: 'Push Image'
+        required: true
+        default: 'true'
+
 
 env:
   # Use docker.io for Docker Hub if empty
@@ -70,6 +78,6 @@ jobs:
           context: .
           file: Dockerfile
           platforms: linux/amd64,linux/arm64
-          push: ${{ github.event_name != 'pull_request' }}
+          push: ${{ github.event_name != 'pull_request' || github.event.inputs.push == "true" }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
