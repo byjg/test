@@ -7,6 +7,18 @@
   <meta name="description" content="Description">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+  <div id="mendable-component"></div>
+
+    <script src="https://unpkg.com/@mendable/search@0.0.98/dist/umd/mendable-bundle.min.js"></script>
+    <script>
+    Mendable.initialize({
+        anon_key: '8fb2b87d-07d2-4765-9903-f4181fb8205f',
+        type:"searchBar",
+        elementId: "mendable-component" // required
+        // all the other props for the component type
+    });
+    </script>
+
 </head>
 <body>
   <div id="app"></div>
