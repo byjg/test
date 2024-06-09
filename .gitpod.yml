@@ -1,11 +1,13 @@
 tasks:
   - init: |
-      echo "No special initialization"
+      curl -sS https://starship.rs/install.sh | sh
+      echo 'eval "$(starship init bash)"' >> ${HOME}/.bashrc
+      cp -r ${GITPOD_REPO_ROOT}/.config/* ${HOME}/.config/
     command: |
       composer install
 
 image:
-  file: .gitpod/Dockerfile
+  file: .gitpod.Dockerfile
 
 jetbrains:
   phpstorm:
@@ -15,6 +17,7 @@ jetbrains:
     - com.intellij.kubernetes
     - com.intellij.mermaid
     - ru.adelf.idea.dotenv
+    - org.toml.lang
 
 vscode:
   extensions:

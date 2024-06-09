@@ -1,6 +1,6 @@
 FROM gitpod/workspace-full:latest
 
-RUN sudo update-alternatives --set php $(which php8.1)
+RUN sudo update-alternatives --set php /usr/bin/php8.1
 
 RUN sudo install-packages \
     php-codesniffer \
@@ -35,6 +35,3 @@ RUN sudo install-packages \
     php8.1-xdebug \
     php8.1-xml \
     pkg-php-tools
-
-RUN sudo pecl channel-update pecl.php.net && \
-    sudo pecl install swoole
