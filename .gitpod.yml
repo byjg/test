@@ -1,6 +1,7 @@
 tasks:
   - init: |
-      curl -sS https://starship.rs/install.sh | sh
+      curl -sS https://starship.rs/install.sh > /tmp/install.sh
+      sh /tmp/install.sh --yes
       echo 'eval "$(starship init bash)"' >> ${HOME}/.bashrc
       cp -r ${GITPOD_REPO_ROOT}/.config/* ${HOME}/.config/
     command: |
