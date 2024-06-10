@@ -3,8 +3,14 @@ tasks:
     command: |
       composer install
 
-image:
-  file: .gitpod.Dockerfile
+#image:
+#  file: .gitpod.Dockerfile
+
+ports:
+  - name: Web App
+    description: The main application web server
+    port: 8080
+    onOpen: open-browser
 
 jetbrains:
   phpstorm:
